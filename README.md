@@ -15,6 +15,6 @@ If all goes well, it should look like this:
 
 ..
 ----------------------------------------------------------------------
-Ran 2 tests in 0.052s
+Ran 4 tests in 0.153s
 
 OK
