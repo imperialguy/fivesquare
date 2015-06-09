@@ -4,9 +4,9 @@ Create a virtual environment with Python 3.x
 
 (pyvenv)$ cd fivesquare
 
-(pyvenv)$ python setup.py
+(pyvenv)$ python setup.py develop
 
-(pyvenv)$ cd fivesquare/app001
+(pyvenv)$ cd app001
 
 If all goes well, it should look like this:
 
