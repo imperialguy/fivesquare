@@ -1,9 +1,6 @@
 from app001.utils.mappings import Business, BusinessReview
 from app001.utils.core import Connection
-from app001.utils.core import get_logger
 from datetime import datetime
-
-logger = get_logger(__file__)
 
 
 class BusinessModel(object):
@@ -109,7 +106,6 @@ class BusinessModel(object):
         4. tags
 
         """
-        logger.debug('i ma here')
         if not self.name:
             raise ValueError(
                 'A valid business name is required')
@@ -123,7 +119,6 @@ class BusinessModel(object):
             raise ValueError(
                 'valid tags are required')
 
-        logger.debug('i ma here')
         with Connection() as c:
             business = Business.objects(name=self.name)[0]
             business_review = BusinessReview(business=business,

@@ -77,6 +77,123 @@ class TestApp001(unittest.TestCase):
         self.assertEqual(resp4.status_code, 200, resp4.data)
         self.assertEqual(len(json_response[u'businessses']), 2)
 
+    def test_add_reviews(self):
+        """Test add reviews functionality
+
+        """
+        biz1 = {'name': 'kohls', 'location': '30.9538, 24.4383'}
+        review1 = {'name': 'kohls', 'rating': 5,
+                   'review': 'good', 'tags': 'shopping, jersey'}
+
+        with self.test_request_context():
+            resp1 = self.test_client().post('/business/add',
+                                            data=json.dumps(biz1),
+                                            content_type='application/json'
+                                            )
+            resp2 = self.test_client().post('/business/review',
+                                            data=json.dumps(review1),
+                                            content_type='application/json'
+                                            )
+
+        self.assertEqual(resp2.status_code, 200)
+
+    def test_get_business_info(self):
+        """Test get business info functionality
+
+        """
+        biz1 = {'name': 'markers', 'location': '34.2738, 20.9320'}
+        biz2 = {'name': 'kohls', 'location': '30.9538, 24.4383'}
+        biz3 = {'name': 'pepboys', 'location': '30.2232, -20.2221'}
+        biz4 = {'name': 'massage envy', 'location': '40.3895, -10.4229'}
+        review1 = {'name': 'kohls', 'rating': 5,
+                   'review': 'good', 'tags': 'shopping, jersey'}
+        review2 = {'name': 'markers', 'rating': 5,
+                   'review': 'excellent', 'tags': 'bars, restaurants'}
+        review3 = {'name': 'pepboys', 'rating': 3,
+                   'review': 'okay', 'tags': 'automobile, repairs'}
+        review4 = {'name': 'pepboys', 'rating': 2,
+                   'review': 'bad', 'tags': 'tires, automobile'}
+        review5 = {'name': 'kohls', 'rating': 1,
+                   'review': 'worst', 'tags': 'clothing, jersey'}
+        review6 = {'name': 'markers', 'rating': 3,
+                   'review': 'alright', 'tags': 'beer, sandwich'}
+        review7 = {'name': 'pepboys', 'rating': 5,
+                   'review': 'great', 'tags': 'engine, oil'}
+        review8 = {'name': 'kohls', 'rating': 3,
+                   'review': 'okay', 'tags': 'shopping, nyc'}
+        review9 = {'name': 'markers', 'rating': 1,
+                   'review': 'bad', 'tags': 'eatery, classy'}
+
+        with self.test_request_context():
+            resp1 = self.test_client().post('/business/add',
+                                            data=json.dumps(biz1),
+                                            content_type='application/json'
+                                            )
+            resp2 = self.test_client().post('/business/add',
+                                            data=json.dumps(biz2),
+                                            content_type='application/json'
+                                            )
+            resp3 = self.test_client().post('/business/add',
+                                            data=json.dumps(biz3),
+                                            content_type='application/json'
+                                            )
+            resp4 = self.test_client().post('/business/add',
+                                            data=json.dumps(biz4),
+                                            content_type='application/json'
+                                            )
+            resp5 = self.test_client().post('/business/review',
+                                            data=json.dumps(review1),
+                                            content_type='application/json'
+                                            )
+            resp6 = self.test_client().post('/business/review',
+                                            data=json.dumps(review2),
+                                            content_type='application/json'
+                                            )
+            resp7 = self.test_client().post('/business/review',
+                                            data=json.dumps(review3),
+                                            content_type='application/json'
+                                            )
+            resp8 = self.test_client().post('/business/review',
+                                            data=json.dumps(review4),
+                                            content_type='application/json'
+                                            )
+            resp9 = self.test_client().post('/business/review',
+                                            data=json.dumps(review5),
+                                            content_type='application/json'
+                                            )
+            resp10 = self.test_client().post('/business/review',
+                                             data=json.dumps(review6),
+                                             content_type='application/json'
+                                             )
+            resp11 = self.test_client().post('/business/review',
+                                             data=json.dumps(review7),
+                                             content_type='application/json'
+                                             )
+            resp12 = self.test_client().post('/business/review',
+                                             data=json.dumps(review8),
+                                             content_type='application/json'
+                                             )
+            resp13 = self.test_client().post('/business/review',
+                                             data=json.dumps(review9),
+                                             content_type='application/json'
+                                             )
+
+            resp14 = self.test_client().get('/business/info/kohls')
+            resp15 = self.test_client().get('/business/info/pepboys')
+            resp16 = self.test_client().get('/business/info/markers')
+
+        json_response_1 = json.loads(resp14.data.decode())
+        json_response_2 = json.loads(resp15.data.decode())
+        json_response_3 = json.loads(resp16.data.decode())
+
+        self.assertEqual(resp14.status_code, 200)
+        self.assertEqual(resp15.status_code, 200)
+        self.assertEqual(resp16.status_code, 200)
+
+        self.assertEqual(len(json_response_1['business_info']['reviews']), 3)
+        self.assertEqual(len(json_response_2['business_info']['reviews']), 3)
+        self.assertEqual(len(json_response_3['business_info']['reviews']), 3)
+
     def tearDown(self):
         """Clear the db
 

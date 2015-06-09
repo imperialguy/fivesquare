@@ -1,19 +1,11 @@
 from app001.web.models.business import BusinessModel
 from wtforms import (
-    SelectMultipleField,
     Form,
     validators,
     TextField,
-    TextAreaField,
-    DecimalField,
     IntegerField,
-    FieldList,
-    ValidationError,
-    FormField
+    ValidationError
 )
-from app001.utils.core import get_logger
-
-logger = get_logger(__file__)
 
 
 class NewBusinessForm(Form):
@@ -36,9 +28,9 @@ class NewReviewForm(Form):
     rating = IntegerField(u'rating', [validators.required()])
     tags = TextField(u'tags', [validators.required()])
 
-    # def validate_name(form, field):
-    #     if not BusinessModel(name=field.data).exists():
-    #         raise ValidationError("This business does not exist in our system")
+    def validate_name(form, field):
+        if not BusinessModel(name=field.data).exists():
+            raise ValidationError("This business does not exist in our system")
 
 
 class SearchBusinessesForm(Form):

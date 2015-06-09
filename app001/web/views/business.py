@@ -36,11 +36,10 @@ def add_business():
 
 
 @businessbp.route('/review', methods=['POST'])
-def add_review(business_name):
+def add_review():
     """Add new review
 
     """
-    logger.debug('i ma here')
     form = NewReviewForm(MultiDict(request.json))
 
     if not form.validate():
@@ -81,7 +80,7 @@ def get_businesss_info(business_name):
     """Returns businesss info
 
     """
-    form = GetBusinessInfoForm(MultiDict(name=business_name))
+    form = GetBusinessInfoForm(MultiDict(dict(name=business_name)))
 
     if not form.validate():
         logger.debug('Form validation errors:\n{0}'.format(form.errors))
