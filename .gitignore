@@ -1,0 +1,17 @@
+.DS_Store
+.DS_Store?
+*.pyc
+.egg-info?
+*.egg-info
+*.egg
+*.swp
+__pycache__
+.coverage
+*/build/
+.idea/
+.settings/
+*.ini
+.project
+.pydevproject
+.~lock.*
+*.db
