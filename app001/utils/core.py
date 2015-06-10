@@ -16,11 +16,9 @@ class Connection(object):
 
         """
         self.logger = get_logger(__file__)
+        self.on_heroku = bool(os.environ.get('ON_HEROKU', None))
 
-        on_heroku = bool(os.environ.get('ON_HEROKU', None))
-        self.logger.debug('on heroku: {0}'.format(on_heroku))
-
-        if not on_heroku:
+        if not self.on_heroku:
             self.connection = connect(DB_SETTINGS['LOCAL']['DB_NAME'],
                                       host=DB_SETTINGS['LOCAL']['DB_HOST'],
                                       port=DB_SETTINGS['LOCAL']['DB_PORT'])

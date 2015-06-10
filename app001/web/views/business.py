@@ -51,7 +51,7 @@ def add_review():
     success = BusinessModel(name=form.name.data,
                             rating=form.rating.data,
                             review=form.review.data,
-                            tags=form.tags.data.split(',')).add_review()
+                            tags=[tag.strip() for tag in form.tags.data.split(',')]).add_review()
     return jsonify(success=success)
 
 
