@@ -15,8 +15,9 @@ class Connection(object):
         """Constructor to setup the connection object
 
         """
+        self.logger = get_logger(__file__)
         MONGO_URI = os.environ.get('MONGOHQ_URL', None)
-        logger.debug('MONGO_URI: {0}'.format(MONGO_URI))
+        self.logger.debug('MONGO_URI: {0}'.format(MONGO_URI))
         db_name = 'fivesquare' if not MONGO_URI else MONGO_URI.split("/")[-1]
         db_host = MONGO_URI if MONGO_URI else 'localhost'
         db_port = DB_PORT
@@ -33,8 +34,7 @@ class Connection(object):
 
         """
         if exc_type:
-            logger = get_logger(__name__)
-            logger.debug(
+            self.logger.debug(
                 'the following exception occured:\n{0}'.format(exc_val))
         self.connection.disconnect()
         return True
