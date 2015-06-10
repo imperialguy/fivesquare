@@ -75,7 +75,7 @@ class TestApp001(unittest.TestCase):
         json_response = json.loads(resp4.data.decode())
 
         self.assertEqual(resp4.status_code, 200, resp4.data)
-        self.assertEqual(len(json_response[u'businessses']), 2)
+        self.assertEqual(len(json_response[u'businesses']), 2)
 
     def test_add_reviews(self):
         """Test add reviews functionality

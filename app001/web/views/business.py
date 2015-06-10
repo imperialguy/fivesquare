@@ -16,7 +16,7 @@ logger = get_logger(__file__)
 
 @businessbp.route('/add', methods=['POST'])
 def add_business():
-    """Add new businesss
+    """Add new business
 
     """
     form = NewBusinessForm(MultiDict(request.json))
@@ -56,8 +56,8 @@ def add_review():
 
 
 @businessbp.route('/search', methods=['POST'])
-def search_businessses():
-    """Returns a list of businesss
+def search_businesses():
+    """Returns a list of business
 
     """
     form = SearchBusinessesForm(MultiDict(request.json))
@@ -69,15 +69,15 @@ def search_businessses():
         return resp
 
     location = [float(i) for i in form.location.data.split(',')]
-    businessses = BusinessModel(location=location,
+    businesses = BusinessModel(location=location,
                                 radius=form.radius.data).find()
 
-    return jsonify(businessses=businessses)
+    return jsonify(businesses=businesses)
 
 
 @businessbp.route('/info/<business_name>', methods=['GET'])
-def get_businesss_info(business_name):
-    """Returns businesss info
+def get_business_info(business_name):
+    """Returns business info
 
     """
     form = GetBusinessInfoForm(MultiDict(dict(name=business_name)))
