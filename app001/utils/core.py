@@ -1,4 +1,4 @@
-from app001.utils.settings import DB_NAME, DB_HOST, DB_PORT
+from app001.utils.settings import DB_SETTINGS
 from mongoengine import connect
 import logging
 import sys
@@ -16,12 +16,21 @@ class Connection(object):
 
         """
         self.logger = get_logger(__file__)
-        MONGO_URI = os.environ.get('MONGOHQ_URL', None)
-        self.logger.debug('MONGO_URI: {0}'.format(MONGO_URI))
-        db_name = 'fivesquare' if not MONGO_URI else MONGO_URI.split("/")[-1]
-        db_host = MONGO_URI if MONGO_URI else 'localhost'
-        db_port = DB_PORT
-        self.connection = connect(db_name, host=db_host, port=db_port)
+
+        on_heroku = bool(os.environ.get('ON_HEROKU', None))
+        self.logger.debug('on heroku: {0}'.format(on_heroku))
+
+        if not on_heroku:
+            self.connection = connect(DB_SETTINGS['LOCAL']['DB_NAME'],
+                                      host=DB_SETTINGS['LOCAL']['DB_HOST'],
+                                      port=DB_SETTINGS['LOCAL']['DB_PORT'])
+        else:
+            self.connection = connect(DB_SETTINGS['REMOTE']['DB_NAME'],
+                                      host=DB_SETTINGS['REMOTE']['DB_HOST'],
+                                      port=DB_SETTINGS['REMOTE']['DB_PORT'],
+                                      username=DB_SETTINGS[
+                                          'REMOTE']['DB_USER'],
+                                      password=DB_SETTINGS['REMOTE']['DB_PASS'])
 
     def __enter__(self):
         """Starts a new Connection by returning the mongoengine connection object
