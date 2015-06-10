@@ -1,1 +1,1 @@
-web: python fivesquare/app001/web/app.py
+web: python app001/web/app.py
