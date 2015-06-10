@@ -16,6 +16,7 @@ class Connection(object):
 
         """
         MONGO_URI = os.environ.get('MONGOHQ_URL', None)
+        logger.debug('MONGO_URI: {0}'.format(MONGO_URI))
         db_name = 'fivesquare' if not MONGO_URI else MONGO_URI.split("/")[-1]
         db_host = MONGO_URI if MONGO_URI else 'localhost'
         db_port = DB_PORT
