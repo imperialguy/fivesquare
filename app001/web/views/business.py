@@ -25,7 +25,6 @@ def add_business():
         logger.debug('Form validation errors:\n{0}'.format(form.errors))
         resp = jsonify()
         resp.status_code = 400
-        logger.debug('i ama here')
         return resp
 
     success = BusinessModel(

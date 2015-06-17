@@ -1,4 +1,5 @@
 # fivesquare
+simple service similar to foursquare
 
 Create a virtual environment with Python 3.x
 
