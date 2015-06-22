@@ -18,7 +18,7 @@ class NewBusinessForm(Form):
 
     def validate_location(form, field):
         num_coordinates = len(field.data.split(','))
-        if not num_coordinates in range(1, 3):
+        if num_coordinates not in range(1, 3):
             raise ValidationError("invalid co-ordinates")
 
 
@@ -39,7 +39,7 @@ class SearchBusinessesForm(Form):
 
     def validate_location(form, field):
         num_coordinates = len(field.data.split(','))
-        if not num_coordinates in range(1, 3):
+        if num_coordinates not in range(1, 3):
             raise ValidationError("invalid co-ordinates")
 
 

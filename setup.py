@@ -24,7 +24,7 @@ docs_extras = [
 
 setup(name='fivesquare',
       version='0.1',
-      description='sample code for hinge',
+      description='fivesquare',
       classifiers=[
           "Programming Language :: Python",
           "Framework :: Flask",

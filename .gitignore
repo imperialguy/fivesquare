@@ -1,17 +1,65 @@
-.DS_Store
-.DS_Store?
-*.pyc
-.egg-info?
-*.egg-info
-*.egg
-*.swp
-__pycache__
-.coverage
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Packaging files:
+*.egg*
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+*.sqlite3
+*.sqlite
+
+# Logs:
+*.log
+
+# Environment variables
+# *.env
+
+# Django stuff:
+*.mo
+*.pot
+
+# IDE
+.project
+.pydevproject
+.settings
 */build/
 .idea/
 .settings/
 *.ini
-.project
-.pydevproject
+
+# Linux Editors
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+*.swo
+
+# Rope
+.ropeproject
+
+# Mac
+.DS_Store
+.DS_Store?
+._*
 .~lock.*
-*.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+#Others
+.coverage

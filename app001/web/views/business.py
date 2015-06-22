@@ -50,7 +50,9 @@ def add_review():
     success = BusinessModel(name=form.name.data,
                             rating=form.rating.data,
                             review=form.review.data,
-                            tags=[tag.strip() for tag in form.tags.data.split(',')]).add_review()
+                            tags=[tag.strip(
+                            ) for tag in form.tags.data.split(
+                                ',')]).add_review()
     return jsonify(success=success)
 
 
@@ -69,7 +71,7 @@ def search_businesses():
 
     location = [float(i) for i in form.location.data.split(',')]
     businesses = BusinessModel(location=location,
-                                radius=form.radius.data).find()
+                               radius=form.radius.data).find()
 
     return jsonify(businesses=businesses)
 

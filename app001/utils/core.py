@@ -28,7 +28,8 @@ class Connection(object):
                                       port=DB_SETTINGS['REMOTE']['DB_PORT'],
                                       username=DB_SETTINGS[
                                           'REMOTE']['DB_USER'],
-                                      password=DB_SETTINGS['REMOTE']['DB_PASS'])
+                                      password=DB_SETTINGS['REMOTE'
+                                                           ]['DB_PASS'])
 
     def __enter__(self):
         """Starts a new Connection by returning the mongoengine connection object
